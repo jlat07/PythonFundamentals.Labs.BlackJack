@@ -5,9 +5,8 @@ def main():
     '''
     Starts Game
     '''
-    
+    print("Welcome to JLAT's Python Black Jack")
     while playing:
-        print("Welcome to JLAT's Python Black Jack")
         time.sleep(2)
         print("Shuffling Deck..")
         time.sleep(2)

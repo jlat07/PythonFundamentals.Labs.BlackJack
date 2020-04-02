@@ -12,6 +12,7 @@ def blackjack(name: Hand):
     Tells the player that the dealer has won
     '''
     print(f'{name.name} has black Jack')
+    print(f'{name.name} Wins')
     playing = False
     return playing
 
@@ -24,8 +25,6 @@ def bust(name: Hand):
     playing = False
     return playing
     
-
-
 def dealer_sim(deck: Deck, player: Hand, dealer: Hand):
     '''
     After player has made all choices, this function runs through the dealers scenerios and deciedes when to hit or Stands
@@ -54,19 +53,18 @@ def dealer_sim(deck: Deck, player: Hand, dealer: Hand):
                 time.sleep(1)
                 print('Dealer Stands:')
                 time.sleep(1)
-                dealer_wins(dealer)
-            if dealer.count == player.count:
+                show_hand(player)
+                time.sleep(1)
+                winner(dealer)
+            if dealer.count < player.count:
+                if player.count == 21:
+                    blackjack(player)
+                else:
+                    print('Dealer Stands:')
+                    time.sleep(1)
+                    winner(player)
+            elif dealer.count == player.count:
                 push(dealer)
-
-
-def dealer_wins(name):
-    '''
-    Tells the player that the dealer has won
-    '''
-    show_hand(name)
-    print(f'{name.name} Wins')
-    playing = False
-    return playing
 
 def first_hand(player: Hand, dealer: Hand):
     '''
@@ -78,7 +76,6 @@ def first_hand(player: Hand, dealer: Hand):
     print('\n')
     print(f"{player.cards[0]} {player.cards[1]} {player.count}")
     print(f"{player.name}'s hand")
-
 
 def hit(deck: Deck, name: Hand):
     '''
@@ -99,9 +96,29 @@ def play_again():
         playing = False
         return playing
     else:
-        print('Thank you for playing')
+        print("         \                           /")
+        print("          \                         /")
+        print("           \  Thanks For Playing   /")
+        print("            ]                     [    ,'|")
+        print("            ]                     [   /  |")
+        print("            ]___               ___[ ,'   |")
+        print("            ]  ]\             /[  [ |:   |")
+        print("            ]  ] \           / [  [ |:   |")
+        print("            ]  ]  ]         [  [  [ |:   |")
+        print("            ]  ]  ]__     __[  [  [ |:   |")
+        print("            ]  ]  ] ]\ _ /[ [  [  [ |:   |")
+        print("           ]  ]  ] ] (#) [ [  [  [ :==== '")
+        print("           ]  ]  ]_].nHn.[_[  [  [")
+        print("           ]  ]  ]  HHHHH. [  [  [")
+        print('           ]  ] /   `HH("N  \ [  [')
+        print("           ]__]/     HHH  '  \[__[")
+        print("           ]         NNN         [")
+        print("           ]         N/'         [")
+        print("           ]         N H         [")
+        print("          /          N            \ ")
+        print("         /           q,            \ ")
+        print("        /                           \ ")
         quit()
-
 
 def play_hand(deck: Deck, name: Hand):
     '''
@@ -117,16 +134,15 @@ def play_hand(deck: Deck, name: Hand):
             print("Player Stands")
             break
 
-
-def player_wins(name):
+def winner(name):
     '''
     Lets the platey know that the player has won
     '''
     show_hand(name)
+    time.sleep(1)
     print(f'{name.name} Wins')
     playing = False
     return playing
-
 
 def push(name):
     '''
@@ -137,14 +153,12 @@ def push(name):
     playing = False
     return playing
 
-
 def show_hand(name: Hand):
     '''
     Function shows the hand specific to the instance of the paramater its given
     '''
     H = [card for card in name.cards]
     print(f"{name.name}'s hand:{H}{name.count}")
-
 
 def reset_deck(player: Hand, dealer: Hand):
     player.cards = []
