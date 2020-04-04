@@ -7,7 +7,7 @@ Having only been in Zip Code Wilmington(a coding boot camp) for 3 Weeks utilizin
 
 To play:
 
--Fork Repo
+-Fork, clone, or download Repo
 
 -From directory, run main.py -->('python3 main.py')
 
