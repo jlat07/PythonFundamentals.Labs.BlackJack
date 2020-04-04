@@ -1,8 +1,10 @@
-import time
+import time, sys
 from classes import *
+
 
 '''
 Functions needed for Black Jack Game
+in alphabetical order (except end_game() which is at the end.)
 
 '''
 
@@ -90,35 +92,17 @@ def hit(deck: Deck, name: Hand):
 
 def play_again():
     '''
-    Starts the game over, or lets user quit
+    Starts the game over, or lets user end game.
     '''
-    if input('Would you like to play again? (y/n): ') == 'y':
+    i = input('Would you like to play again? (y/n): ')
+    if i == 'y':
         playing = False
         return playing
+    elif i == 'n':
+        end_game()
     else:
-        print("         \                           /")
-        print("          \                         /")
-        print("           \  Thanks For Playing   /")
-        print("            ]                     [    ,'|")
-        print("            ]                     [   /  |")
-        print("            ]___               ___[ ,'   |")
-        print("            ]  ]\             /[  [ |:   |")
-        print("            ]  ] \           / [  [ |:   |")
-        print("            ]  ]  ]         [  [  [ |:   |")
-        print("            ]  ]  ]__     __[  [  [ |:   |")
-        print("            ]  ]  ] ]\ _ /[ [  [  [ |:   |")
-        print("           ]  ]  ] ] (#) [ [  [  [ :==== '")
-        print("           ]  ]  ]_].nHn.[_[  [  [")
-        print("           ]  ]  ]  HHHHH. [  [  [")
-        print('           ]  ] /   `HH("N  \ [  [')
-        print("           ]__]/     HHH  '  \[__[")
-        print("           ]         NNN         [")
-        print("           ]         N/'         [")
-        print("           ]         N H         [")
-        print("          /          N            \ ")
-        print("         /           q,            \ ")
-        print("        /                           \ ")
-        quit()
+        print('Invalid input')
+        play_again()
 
 def play_hand(deck: Deck, name: Hand):
     '''
@@ -133,6 +117,12 @@ def play_hand(deck: Deck, name: Hand):
         if I == 's':
             print("Player Stands")
             break
+
+def print_slow(str):
+    for letter in str:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(0.1)
 
 def winner(name):
     '''
@@ -163,3 +153,51 @@ def show_hand(name: Hand):
 def reset_deck(player: Hand, dealer: Hand):
     player.cards = []
     dealer.cards = []
+
+
+def end_game():
+    print("         \                           /")
+    time.sleep(.1)
+    print("          \                         /")
+    time.sleep(.1)
+    print("           \  Thanks For Playing   /")
+    time.sleep(.1)
+    print("            ]                     [    ,'|")
+    time.sleep(.1)
+    print("            ]                     [   /  |")
+    time.sleep(.1)
+    print("            ]___               ___[ ,'   |")
+    time.sleep(.1)
+    print("            ]  ]\             /[  [ |:   |")
+    time.sleep(.1)
+    print("            ]  ] \           / [  [ |:   |")
+    time.sleep(.1)
+    print("            ]  ]  ]         [  [  [ |:   |")
+    time.sleep(.1)
+    print("            ]  ]  ]__     __[  [  [ |:   |")
+    time.sleep(.1)
+    print("            ]  ]  ] ]\ _ /[ [  [  [ |:   |")
+    time.sleep(.1)
+    print("           ]  ]  ] ] (#) [ [  [  [ :==== '")
+    time.sleep(.1)
+    print("           ]  ]  ]_].nHn.[_[  [  [")
+    time.sleep(.1)
+    print("           ]  ]  ]  HHHHH. [  [  [")
+    time.sleep(.1)
+    print('           ]  ] /   `HH("N  \ [  [')
+    time.sleep(.1)
+    print("           ]__]/     HHH  '  \[__[")
+    time.sleep(.1)
+    print("           ]         NNN         [")
+    time.sleep(.1)
+    print("           ]         N/'         [")
+    time.sleep(.1)
+    print("           ]         N H         [")
+    time.sleep(.1)
+    print("          /          N            \ ")
+    time.sleep(.1)
+    print("         /           q,            \ ")
+    time.sleep(.1)
+    print("        /                           \ ")
+    time.sleep(.1)
+    quit()
