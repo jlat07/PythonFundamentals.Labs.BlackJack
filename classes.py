@@ -59,9 +59,10 @@ class Hand:
             self.aces += 1
     
     def ace(self):
-        while self.count < 21 and self.aces > 1:
-            self.count -= 10
-            self.aces -= 1
+        if self.count > 21:
+            while self.count > 21 and self.aces > 0:
+                self.count -= 10
+                self.aces -= 1
     
     def __str__(self):
         return f"{self.name},{self.cards}, {self.count}"
