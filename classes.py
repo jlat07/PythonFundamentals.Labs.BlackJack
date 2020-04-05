@@ -59,7 +59,7 @@ class Hand:
             self.aces += 1
     
     def ace(self):
-        while self.count > 21 and self.aces > 1:
+        while self.count < 21 and self.aces > 1:
             self.count -= 10
             self.aces -= 1
     
