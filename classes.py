@@ -1,13 +1,12 @@
 import random
 
+
 '''
 Classes needed for Black Jack Game
 '''
-
 suits = ["\u2663", "\u2665", "\u2666", "\u2660"]
 ranks = ('2', '3', '4', '5', '6', '7', '8', '9', 'J', 'Q', 'K', 'A')
 values = {'2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'J': 10, 'K': 10, 'Q': 10, 'A': 11}
-
 
 class Card:
     def __init__(self, suit: str, rank: str):

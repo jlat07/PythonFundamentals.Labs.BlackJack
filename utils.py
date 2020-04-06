@@ -1,5 +1,5 @@
 import time
-from classes import Card, Deck, Hand
+from classes import Deck, Hand
 
 
 '''
