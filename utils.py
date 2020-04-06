@@ -1,5 +1,5 @@
-import time, sys
-from classes import *
+import time
+from classes import Card, Deck, Hand
 
 
 '''
@@ -7,34 +7,30 @@ Functions needed for Black Jack Game
 in alphabetical order (except end_game() which is at the end.)
 
 '''
-
 playing = True
 def blackjack(name: Hand):
     '''
-    Tells the player that the dealer has won
+    Lets user know who has Black Jack
     '''
     print(f'{name.name} has black Jack')
     print(f'{name.name} Wins')
-    playing = False
-    return playing
 
 def bust(name: Hand):
     '''
-    If dealer or player goes over 21, this bust function shows the had and lets player know a bust has occured
+    Lets user know who hast bust
     '''
     time.sleep(1)
     print(f"BUST! {name.name} loses")
-    playing = False
-    return playing
     
 def dealer_sim(deck: Deck, player: Hand, dealer: Hand):
     '''
-    After player has made all choices, this function runs through the dealers scenerios and deciedes when to hit or Stands
-    also, deciedes who wins and calls the corresponding function
+    After player has made all choices, this function determines if player has blackjack or bust
+    Or runs through the dealers scenerios and deciedes when to hit or Stand. Then returns outcome.
     '''
-    if player.count > 21:
-        bust(player)
+    if player.count == 21:
         return
+    if player.count > 21:
+        return bust(player)
     else:
         print("Dealer turn's")
         time.sleep(1)
@@ -70,7 +66,7 @@ def dealer_sim(deck: Deck, player: Hand, dealer: Hand):
 
 def first_hand(player: Hand, dealer: Hand):
     '''
-    Shows the first hand with one dealer card not turned over
+    Shows the first hand with one dealer card not turned over. Evaluates if player has 21
     '''
     print(f"{dealer.name}'s hand")
     print(f'[], {dealer.cards[1]}')
@@ -78,17 +74,16 @@ def first_hand(player: Hand, dealer: Hand):
     print('\n')
     print(f"{player.cards[0]} {player.cards[1]} {player.count}")
     print(f"{player.name}'s hand")
+    if player.count == 21:
+        blackjack(player)
 
 def hit(deck: Deck, name: Hand):
     '''
-    Function draws a card from the deck and addes it to the hand. While taking in consnameeration of an ace, and
-    if user bust on the hit, it will call the bust function
+    Function draws a card from the deck and addes it to the hand.
+    and the ace difference is taken into consideration.
     '''
     hit = deck.deal()
     name.draw_card(hit)
-    name.ace()
-    if name.count > 21:
-        return
 
 def play_again():
     '''
@@ -96,8 +91,7 @@ def play_again():
     '''
     i = input('Would you like to play again? (y/n): ')
     if i == 'y':
-        playing = False
-        return playing
+        return
     elif i == 'n':
         end_game()
     else:
@@ -110,19 +104,16 @@ def play_hand(deck: Deck, name: Hand):
     '''
     while name.count <= 21:
         I = input("h: to Hit or s: to Stand: ")
+        I = I.lower()
         if I == 'h':
             hit(deck, name)
             time.sleep(1)
             show_hand(name)
-        if I == 's':
+        elif I == 's':
             print("Player Stands")
             break
-
-def print_slow(str):
-    for letter in str:
-        sys.stdout.write(letter)
-        sys.stdout.flush()
-        time.sleep(0.1)
+        else:
+            print('Invalid input')
 
 def winner(name):
     '''
@@ -131,8 +122,6 @@ def winner(name):
     show_hand(name)
     time.sleep(1)
     print(f'{name.name} Wins')
-    playing = False
-    return playing
 
 def push(name):
     '''
@@ -140,8 +129,6 @@ def push(name):
     '''
     show_hand(name)
     print('Push, No Winner!')
-    playing = False
-    return playing
 
 def show_hand(name: Hand):
     '''

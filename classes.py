@@ -20,7 +20,6 @@ class Card:
     def __repr__(self):
         return "[" + self.rank + self.suit + "]"
 
-
 class Deck:
     def __init__(self):
         self.deck = []
@@ -31,9 +30,6 @@ class Deck:
                 self.deck.append(Card(suit, rank))
                 self.deck.append(Card(suit, rank))
                 
-    def number_of_decks(self):
-        self.deck = (self.deck * 4)
-    
     def shuffle(self):
         random.shuffle(self.deck)
     
@@ -43,7 +39,6 @@ class Deck:
     
     def __str__(self):
         return f"{self.deck}"
-
 
 class Hand:
     def __init__(self, name: str):
@@ -55,14 +50,14 @@ class Hand:
     def draw_card(self, card: Card):
         self.cards.append(card)
         self.count += values[card.rank]
-        if card.rank == 'Ace':
+        if card.rank == 'A':
             self.aces += 1
-    
+            self.ace()
+  
     def ace(self):
-        if self.count > 21:
-            while self.count > 21 and self.aces > 0:
-                self.count -= 10
-                self.aces -= 1
+        while self.count > 21 and self.aces:
+            self.count -= 10
+            self.aces -= 1
     
     def __str__(self):
         return f"{self.name},{self.cards}, {self.count}"
