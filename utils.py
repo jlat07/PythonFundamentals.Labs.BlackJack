@@ -8,6 +8,8 @@ in alphabetical order (except end_game() which is at the end.)
 
 '''
 playing = True
+
+
 def blackjack(name: Hand):
     '''
     Lets user know who has Black Jack
@@ -15,20 +17,22 @@ def blackjack(name: Hand):
     print(f'{name.name} has black Jack')
     print(f'{name.name} Wins')
 
+
 def bust(name: Hand):
     '''
     Lets user know who hast bust
     '''
     time.sleep(1)
     print(f"BUST! {name.name} loses")
-    
+
+
 def dealer_sim(deck: Deck, player: Hand, dealer: Hand):
     '''
     After player has made all choices, this function determines if player has blackjack or bust
     Or runs through the dealers scenerios and deciedes when to hit or Stand. Then returns outcome.
     '''
     if player.count == 21:
-        return
+        return blackjack(player)
     if player.count > 21:
         return bust(player)
     else:
@@ -64,6 +68,7 @@ def dealer_sim(deck: Deck, player: Hand, dealer: Hand):
             elif dealer.count == player.count:
                 push(dealer)
 
+
 def first_hand(player: Hand, dealer: Hand):
     '''
     Shows the first hand with one dealer card not turned over. Evaluates if player has 21
@@ -77,6 +82,7 @@ def first_hand(player: Hand, dealer: Hand):
     if player.count == 21:
         blackjack(player)
 
+
 def hit(deck: Deck, name: Hand):
     '''
     Function draws a card from the deck and addes it to the hand.
@@ -84,6 +90,7 @@ def hit(deck: Deck, name: Hand):
     '''
     hit = deck.deal()
     name.draw_card(hit)
+
 
 def play_again():
     '''
@@ -97,6 +104,7 @@ def play_again():
     else:
         print('Invalid input')
         play_again()
+
 
 def play_hand(deck: Deck, name: Hand):
     '''
@@ -115,6 +123,7 @@ def play_hand(deck: Deck, name: Hand):
         else:
             print('Invalid input')
 
+
 def winner(name):
     '''
     Lets the platey know that the player has won
@@ -123,6 +132,7 @@ def winner(name):
     time.sleep(1)
     print(f'{name.name} Wins')
 
+
 def push(name):
     '''
     Calls the out come of the game, when dealer and player have the same count, push is invoked
@@ -130,12 +140,14 @@ def push(name):
     show_hand(name)
     print('Push, No Winner!')
 
+
 def show_hand(name: Hand):
     '''
     Function shows the hand specific to the instance of the paramater its given
     '''
     H = [card for card in name.cards]
     print(f"{name.name}'s hand:{H}{name.count}")
+
 
 def reset_deck(player: Hand, dealer: Hand):
     player.cards = []

@@ -1,6 +1,6 @@
 from utils import *
 
-playing = True
+
 def main():
     '''
     Starts Game
