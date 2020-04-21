@@ -110,7 +110,7 @@ def play_hand(deck: Deck, name: Hand):
     '''
     This is where the player deciedes to hit or stay
     '''
-    while name.count <= 21:
+    while name.count < 21:
         I = input("h: to Hit or s: to Stand: ")
         I = I.lower()
         if I == 'h':
