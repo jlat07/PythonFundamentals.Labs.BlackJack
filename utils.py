@@ -26,19 +26,19 @@ def bust(name: Hand):
 def dealer_sim(deck: Deck, player: Hand, dealer: Hand):
     '''
     After player has made all choices, this function determines if player has blackjack or bust
-    Or runs through the dealers scenerios and deciedes when to hit or Stand. Then returns outcome.
+    Or runs through the dealers scenario and decides when to hit or Stand. Then returns outcome.
     '''
     if player.count == 21:
         return blackjack(player)
     if player.count > 21:
         return bust(player)
     else:
-        print("Dealer turn's")
+        print("Dealer's turns")
         time.sleep(1)
         show_hand(dealer)
         time.sleep(2)
         while dealer.count <= 17:
-            print('Dealer Hits:')
+            print('Dealer Hits..')
             time.sleep(1)
             hit(deck, dealer)
             show_hand(dealer)
@@ -50,7 +50,7 @@ def dealer_sim(deck: Deck, player: Hand, dealer: Hand):
         elif dealer.count > 17:
             if dealer.count > player.count:
                 time.sleep(1)
-                print('Dealer Stands:')
+                print('Dealer Stands')
                 time.sleep(1)
                 show_hand(player)
                 time.sleep(1)
@@ -59,7 +59,7 @@ def dealer_sim(deck: Deck, player: Hand, dealer: Hand):
                 if player.count == 21:
                     blackjack(player)
                 else:
-                    print('Dealer Stands:')
+                    print('Dealer Stands')
                     time.sleep(1)
                     winner(player)
             elif dealer.count == player.count:
@@ -82,7 +82,7 @@ def first_hand(player: Hand, dealer: Hand):
 
 def hit(deck: Deck, name: Hand):
     '''
-    Function draws a card from the deck and addes it to the hand.
+    Function draws a card from the deck and adds it to the hand.
     and the ace difference is taken into consideration.
     '''
     hit = deck.deal()
@@ -105,7 +105,7 @@ def play_again():
 
 def play_hand(deck: Deck, name: Hand):
     '''
-    This is where the player deciedes to hit or stay
+    This is where the player decides to hit or stay
     '''
     while name.count < 21:
         I = input("h: to Hit or s: to Stand: ")
@@ -123,7 +123,7 @@ def play_hand(deck: Deck, name: Hand):
 
 def winner(name):
     '''
-    Lets the platey know that the player has won
+    Lets the player know that the player has won
     '''
     show_hand(name)
     time.sleep(1)
@@ -140,7 +140,7 @@ def push(name):
 
 def show_hand(name: Hand):
     '''
-    Function shows the hand specific to the instance of the paramater its given
+    Function shows the hand specific to the instance of the parameter its given
     '''
     H = [card for card in name.cards]
     print(f"{name.name}'s hand:{H}{name.count}")
