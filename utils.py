@@ -7,7 +7,6 @@ Functions needed for Black Jack Game
 in alphabetical order (except end_game() which is at the end.)
 
 '''
-
 def blackjack(name: Hand):
     '''
     Lets user know who has Black Jack

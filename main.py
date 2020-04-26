@@ -5,6 +5,8 @@ def main():
     '''
     Starts Game
     '''
+
+    playing = True
     print("Welcome to JLAT's Python Black Jack")
     while playing:
         time.sleep(2)
